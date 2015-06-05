@@ -1,0 +1,64 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='Add'"></head>
+
+<body>
+<div th:replace="layout :: navbar"/>
+<div class="container">
+    <form class="form-horizontal" action="#" th:action="@{/add/student}" th:object="${student}" method="post">
+        <table class="table">
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" th:field="*{firstName}" /></td>
+                <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</td>
+            </tr>
+            <tr>
+                <td>Middle Name:</td>
+                <td><input type="text" th:field="*{middleName}" /></td>
+                <td th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">Middle Name Error</td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type="text" th:field="*{lastName}" /></td>
+                <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" th:field="*{email}" /></td>
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
+            </tr>
+            <tr>
+                <td>Телефон:</td>
+                <td><input type="text" th:field="*{phone}" /></td>
+                <td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Name Error</td>
+            </tr>
+            <tr>
+                <td>Университет:</td>
+                <td><input type="text" th:field="*{university}" /></td>
+                <td th:if="${#fields.hasErrors('university')}" th:errors="*{university}">Name Error</td>
+            </tr>
+            <tr>
+                <td>Спциальность:</td>
+                <td><input type="text" th:field="*{specialty}" /></td>
+                <td th:if="${#fields.hasErrors('specialty')}" th:errors="*{specialty}">Name Error</td>
+            </tr>
+            <tr>
+                <td>Курс:</td>
+                <td><input type="text" th:field="*{course}" /></td>
+                <td th:if="${#fields.hasErrors('course')}" th:errors="*{course}">Name Error</td>
+            </tr>
+            <tr>
+                <td>Группа:</td>
+                <td><input type="text" th:field="*{group}" /></td>
+                <td th:if="${#fields.hasErrors('group')}" th:errors="*{group}">Name Error</td>
+            </tr>
+            <tr>
+                <td><button  class="btn btn-default" type="submit">Add</button></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div th:include="layout :: footer" id="footer">(footer)</div>
+</body>
+</html>
