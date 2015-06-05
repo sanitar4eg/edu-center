@@ -1,23 +1,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="layout :: htmlhead" th:with="title='Add'"></head>
+<head th:include="layout :: htmlhead" th:with="title='Добавление студента'"></head>
 
 <body>
 <div th:replace="layout :: navbar"/>
 <div class="container">
-    <form class="form-horizontal" action="#" th:action="@{/add/student}" th:object="${student}" method="post">
+    <form class="form-horizontal" action="#" th:action="@{/student/add}" th:object="${student}" method="post">
         <table class="table">
             <tr>
-                <td>First Name:</td>
+                <td>Имя:</td>
                 <td><input type="text" th:field="*{firstName}" /></td>
                 <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</td>
             </tr>
             <tr>
-                <td>Middle Name:</td>
+                <td>Отчество:</td>
                 <td><input type="text" th:field="*{middleName}" /></td>
                 <td th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">Middle Name Error</td>
             </tr>
             <tr>
-                <td>Last Name:</td>
+                <td>Фамилия:</td>
                 <td><input type="text" th:field="*{lastName}" /></td>
                 <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</td>
             </tr>
@@ -37,7 +37,7 @@
                 <td th:if="${#fields.hasErrors('university')}" th:errors="*{university}">Name Error</td>
             </tr>
             <tr>
-                <td>Спциальность:</td>
+                <td>Специальность:</td>
                 <td><input type="text" th:field="*{specialty}" /></td>
                 <td th:if="${#fields.hasErrors('specialty')}" th:errors="*{specialty}">Name Error</td>
             </tr>
@@ -52,7 +52,9 @@
                 <td th:if="${#fields.hasErrors('group')}" th:errors="*{group}">Name Error</td>
             </tr>
             <tr>
-                <td><button  class="btn btn-default" type="submit">Add</button></td>
+                <td>
+                    <button class="btn btn-default" type="submit">Добавить</button>
+                </td>
                 <td></td>
             </tr>
         </table>

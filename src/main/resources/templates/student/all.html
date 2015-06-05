@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="layout :: htmlhead" th:with="title='Hello'"></head>
+<head th:include="layout :: htmlhead" th:with="title='Добавление студента'"></head>
 
 <body>
 <div th:replace="layout :: navbar"/>
@@ -7,11 +7,12 @@
 <div class="container">
     <div class="starter-template">
         <p class="lead" th:text="${greeting}">(greeting)</p>
+
         <p>The current time is <span th:text="${currentTime}">(time)</span></p>
     </div>
 </div>
-<div class = "container">
-    <div class = "table-responsive">
+<div class="container">
+    <div class="table-responsive">
         <table class="table table-hover table-striped">
             <thead>
             <tr>
@@ -21,7 +22,6 @@
                 <th>ВУЗ</th>
                 <th>Специальность</th>
                 <th>Курс</th>
-                <th>Группа</th>
                 <th></th>
             </tr>
             </thead>
@@ -33,17 +33,16 @@
                 <td data-th-text="${student.university}"></td>
                 <td data-th-text="${student.specialty}"></td>
                 <td data-th-text="${student.course}"></td>
-                <td data-th-text="${student.group}"></td>
-                <td><a data-th-href="@{/delete/student(id=${student.id})}">delete</a> |
-                    <a data-th-href="@{/edit/student(id=${student.id})}">edit</a>
+                <td><a data-th-href="@{/student/delete(id=${student.id})}">Удалить</a> |
+                    <a data-th-href="@{/student/edit(id=${student.id})}">Изменить</a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <a href="#" data-th-href="@{/add/student}">
+    <a href="#" data-th-href="@{/student/add}">
         <button type="button" class="btn btn-default">
-            Add
+            Добавить
         </button>
     </a>
 </div>

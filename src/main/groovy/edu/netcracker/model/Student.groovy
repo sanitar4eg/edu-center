@@ -1,4 +1,5 @@
 package edu.netcracker.model
+
 import groovy.transform.CompileStatic
 import org.hibernate.validator.constraints.Email
 import org.hibernate.validator.constraints.NotEmpty
@@ -25,6 +26,4 @@ public class Student {
     String course
     @Column(name = "groupe")
     String group
-
-
 }
