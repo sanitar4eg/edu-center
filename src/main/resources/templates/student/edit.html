@@ -9,6 +9,7 @@
 
         <div th:include="layout :: edit-student" th:with="text-button='Изменить'"></div>
         <button class="btn btn-default" type="submit">Изменить</button>
+        <input class="btn btn-default" action="action" type="button" value="Отменить" onclick="history.go(-1);"/>
     </form>
 </div>
 

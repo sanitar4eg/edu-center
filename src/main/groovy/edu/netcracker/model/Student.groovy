@@ -15,6 +15,7 @@ public class Student {
     String firstName
     String lastName
     String middleName
+    String type
     @Email
     @NotEmpty
     String email

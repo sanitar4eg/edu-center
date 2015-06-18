@@ -17,6 +17,7 @@
             <thead>
             <tr>
                 <th>ФИО</th>
+                <th>Группа</th>
                 <th>Почта</th>
                 <th>Телефон</th>
                 <th>ВУЗ</th>
@@ -28,6 +29,7 @@
             <tbody>
             <tr data-th-each="student : ${students}">
                 <td data-th-text="|${student.firstName} ${student.middleName} ${student.lastName}|"></td>
+                <td data-th-text="${student.type}"></td>
                 <td data-th-text="${student.email}"></td>
                 <td data-th-text="${student.phone}"></td>
                 <td data-th-text="${student.university}"></td>

@@ -48,6 +48,15 @@
             <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</td>
         </tr>
         <tr>
+            <td>Вид обучения:</td>
+            <td>
+                <select class="form-control" th:field="*{type}">
+                    <option th:value="Dev">Dev</option>
+                    <option th:value="QA">QA</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
             <td>Email:</td>
             <td><input class="form-control" type="email" th:field="*{email}"/></td>
             <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
