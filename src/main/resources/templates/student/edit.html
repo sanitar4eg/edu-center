@@ -2,10 +2,10 @@
 <head th:include="layout :: htmlhead" th:with="title='Изменение записи о студенте'"></head>
 
 <body>
-<div th:replace="layout :: navbar"/>
+<div th:replace="layout :: navbar"></div>
 <div class="container">
     <form class="form-horizontal" action="#" th:action="@{/student/edit}" th:object="${student}" method="post">
-        <input type="text" hidden="hidden" data-th-value="*{id}" data-th-field="*{id}"></input>
+        <input type="text" hidden="hidden" data-th-value="*{id}" data-th-field="*{id}">
 
         <div th:include="layout :: edit-student" th:with="text-button='Изменить'"></div>
         <button class="btn btn-default" type="submit">Изменить</button>

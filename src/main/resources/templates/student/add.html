@@ -2,7 +2,7 @@
 <head th:include="layout :: htmlhead" th:with="title='Добавление студента'"></head>
 
 <body>
-<div th:replace="layout :: navbar"/>
+<div th:replace="layout :: navbar"></div>
 <div class="container">
     <form class="form-horizontal" action="#" th:action="@{/student/add}" th:object="${student}" method="post">
         <div th:include="layout :: edit-student" id="edit-student"></div>
