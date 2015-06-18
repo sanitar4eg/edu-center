@@ -30,6 +30,61 @@
     </div>
 </div>
 
+<div th:fragment="edit-student" id="edit-student">
+    <table class="table">
+        <tr>
+            <td>Имя:</td>
+            <td><input class="form-control" type="text" th:field="*{firstName}"/></td>
+            <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</td>
+        </tr>
+        <tr>
+            <td>Отчество:</td>
+            <td><input class="form-control" type="text" th:field="*{middleName}"/></td>
+            <td th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">Middle Name Error</td>
+        </tr>
+        <tr>
+            <td>Фамилия:</td>
+            <td><input class="form-control" type="text" th:field="*{lastName}"/></td>
+            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input class="form-control" type="email" th:field="*{email}"/></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
+        </tr>
+        <tr>
+            <td>Телефон:</td>
+            <td><input class="form-control" type="tel" required="required" pattern="(\+?\d[- .]*){6,13}"
+                       title="Международный, государственный или местный телефонный номер" th:field="*{phone}"/></td>
+            <td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Университет:</td>
+            <td>
+                <select class="form-control" th:field="*{university}">
+                    <option th:value="СГУ">СГУ</option>
+                    <option th:value="СГТУ">СГТУ</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Спциальность:</td>
+            <td><input class="form-control" type="text" th:field="*{specialty}"/></td>
+            <td th:if="${#fields.hasErrors('specialty')}" th:errors="*{specialty}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Курс:</td>
+            <td><input class="form-control" type="text" th:field="*{course}"/></td>
+            <td th:if="${#fields.hasErrors('course')}" th:errors="*{course}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Группа:</td>
+            <td><input class="form-control" type="text" th:field="*{group}"/></td>
+            <td th:if="${#fields.hasErrors('group')}" th:errors="*{group}">Name Error</td>
+        </tr>
+    </table>
+</div>
+
 <div th:fragment="footer" id="footer">
     <div class="container">
         <p class="muted credit">Учебный центр</p>

@@ -33,11 +33,11 @@ public class StudentController {
 
     @RequestMapping(value = "/student/add", method = RequestMethod.POST)
     public String submitForm(@Valid Student student, BindingResult result) {
-        String target = "redirect:/student/all"
-        if (result.hasErrors()) {
-            target = "student/add"
+        String target = "student/add"
+        if (!result.hasErrors()) {
+            target = "redirect:/student/all"
+            studentService.saveAndFlush(student)
         }
-        studentService.saveAndFlush(student)
         target
     }
 
@@ -49,11 +49,11 @@ public class StudentController {
 
     @RequestMapping(value = "/student/edit", method = RequestMethod.POST)
     public String submitDeleteForm(@Valid Student student, BindingResult result) {
-        String target = "redirect:/student/all"
-        if (result.hasErrors()) {
-            target = "student/edit"
+        String target = "student/edit"
+        if (!result.hasErrors()) {
+            target = "redirect:/student/all"
+            studentService.saveAndFlush(student)
         }
-        studentService.saveAndFlush(student)
         target
     }
 
