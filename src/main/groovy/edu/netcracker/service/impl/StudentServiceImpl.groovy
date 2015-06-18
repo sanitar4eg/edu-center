@@ -31,4 +31,14 @@ class StudentServiceImpl implements StudentService {
     public void delete(Long id) {
         repository.delete(id)
     }
+
+    @Override
+    List<Student> findDev() {
+        repository.findByTypeIgnoreCase("dev")
+    }
+
+    @Override
+    List<Student> findQA() {
+        repository.findByTypeIgnoreCase("qa")
+    }
 }

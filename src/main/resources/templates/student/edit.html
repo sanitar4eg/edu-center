@@ -5,11 +5,11 @@
 <div th:replace="layout :: navbar"></div>
 <div class="container">
     <form class="form-horizontal" action="#" th:action="@{/student/edit}" th:object="${student}" method="post">
-        <input type="text" hidden="hidden" data-th-value="*{id}" data-th-field="*{id}">
+        <input type="text" hidden="hidden" data-th-value="*{id}" data-th-field="*{id}"/>
 
         <div th:include="layout :: edit-student" th:with="text-button='Изменить'"></div>
         <button class="btn btn-default" type="submit">Изменить</button>
-        <input class="btn btn-default" action="action" type="button" value="Отменить" onclick="history.go(-1);"/>
+        <input class="btn" action="action" type="button" value="Отменить" onclick="history.go(-1);"/>
     </form>
 </div>
 

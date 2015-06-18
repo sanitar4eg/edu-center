@@ -12,4 +12,8 @@ public interface StudentService {
     Student getOne(Long id);
 
     void delete(Long id);
+
+    List<Student> findQA();
+
+    List<Student> findDev();
 }

@@ -15,51 +15,71 @@ import javax.validation.Valid
 @Controller
 public class StudentController {
 
+    private static final String STUDENT_LIST = "/student/list"
+    private static final String STUDENT_ADD = "/student/add"
+    private static final String REDIRECT_STUDENT_LIST = "redirect:/student/list"
+    private static final String STUDENT_EDIT = "/student/edit"
+    private static final String STUDENT_DELETE = "/student/delete"
+    private static final String STUDENT_QA = "/student/qa"
+    private static final String STUDENT_DEV = "/student/dev"
+
     @Autowired
     StudentService studentService
 
-    @RequestMapping(value = "/student/all", method = RequestMethod.GET)
+    @RequestMapping(value = StudentController.STUDENT_LIST, method = RequestMethod.GET)
     public String hello(Locale locale, Model model) {
         model.addAttribute("students", studentService.findAll())
-        "student/all"
+        STUDENT_LIST
     }
 
-    @RequestMapping(value = "/student/add", method = RequestMethod.GET)
+    @RequestMapping(value = StudentController.STUDENT_QA, method = RequestMethod.GET)
+    public String studentQA(Model model) {
+        model.addAttribute("students", studentService.findQA())
+        STUDENT_LIST
+    }
+
+    @RequestMapping(value = StudentController.STUDENT_DEV, method = RequestMethod.GET)
+    public String studentDev(Model model) {
+        model.addAttribute("students", studentService.findDev())
+        STUDENT_LIST
+    }
+
+    @RequestMapping(value = StudentController.STUDENT_ADD, method = RequestMethod.GET)
     public String initForm(Model model) {
         model.addAttribute("student", new Student())
-        "student/add"
+        STUDENT_ADD
     }
 
 
-    @RequestMapping(value = "/student/add", method = RequestMethod.POST)
+    @RequestMapping(value = StudentController.STUDENT_ADD, method = RequestMethod.POST)
     public String submitForm(@Valid Student student, BindingResult result) {
-        String target = "student/add"
+        String target = STUDENT_ADD
         if (!result.hasErrors()) {
-            target = "redirect:/student/all"
+            target = REDIRECT_STUDENT_LIST
             studentService.saveAndFlush(student)
         }
         target
     }
 
-    @RequestMapping(value = "/student/edit", method = RequestMethod.GET)
+    @RequestMapping(value = StudentController.STUDENT_EDIT, method = RequestMethod.GET)
     public String initForm(@RequestParam(value = "id", required = true) Long id, Model model) {
         model.addAttribute("student", studentService.getOne(id))
-        return "student/edit"
+        return STUDENT_EDIT
     }
 
-    @RequestMapping(value = "/student/edit", method = RequestMethod.POST)
+    @RequestMapping(value = StudentController.STUDENT_EDIT, method = RequestMethod.POST)
     public String submitDeleteForm(@Valid Student student, BindingResult result) {
-        String target = "student/edit"
+        String target = STUDENT_EDIT
         if (!result.hasErrors()) {
-            target = "redirect:/student/all"
+            target = REDIRECT_STUDENT_LIST
             studentService.saveAndFlush(student)
         }
         target
     }
 
-    @RequestMapping(value = "/student/delete", method = RequestMethod.GET)
+    @RequestMapping(value = StudentController.STUDENT_DELETE, method = RequestMethod.GET)
     public String submitForm(@RequestParam(value = "id", required = true) Long id) {
         studentService.delete(id)
-        "redirect:/student/all"
+        REDIRECT_STUDENT_LIST
     }
 }
