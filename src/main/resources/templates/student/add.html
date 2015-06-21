@@ -7,7 +7,7 @@
     <form class="form-horizontal" action="#" th:action="@{/student/add}" th:object="${student}" method="post">
         <div th:include="layout :: edit-student" id="edit-student"></div>
         <button class="btn btn-default" type="submit">Добавить</button>
-        <input class="btn" action="action" type="button" value="Отменить" onclick="history.go(-1);"/>
+        <input class="btn" type="button" value="Отменить" onclick="history.go(-1);"/>
     </form>
 </div>
 

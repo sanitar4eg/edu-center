@@ -1,15 +1,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="htmlhead">
-    <meta charset="UTF-8"></meta>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-    <meta name="description" content=""></meta>
-    <meta name="author" content=""></meta>
+    <meta charset="UTF-8"/>
 
     <title th:text="${title}">(title)</title>
 
-    <link th:href="@{/webjars/bootstrap/3.0.3/css/bootstrap.css}" rel="stylesheet"></link>
-    <link th:href="@{/css/starter.css}" rel="stylesheet"></link>
+    <link th:href="@{/webjars/bootstrap/3.0.3/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/starter.css}" rel="stylesheet"/>
 </head>
 
 <body>
@@ -24,64 +20,11 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#">About</a></li>
             </ul>
         </div>
     </div>
 </div>
-
-<!--
-    <div class="form-group">
-      <label class="col-sm-3 control-label">Focused</label>
-      <div class="col-sm-10">
-        <input class="form-control" id="focusedInput" type="text" value="Click to focus...">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword" class="col-sm-3 control-label">Disabled</label>
-      <div class="col-sm-10">
-        <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
-      </div>
-    </div>
-    <fieldset disabled>
-      <div class="form-group">
-        <label for="disabledTextInput" class="col-sm-3 control-label">Disabled input and select list (Fieldset disabled)</label>
-        <div class="col-sm-10">
-          <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="disabledSelect" class="col-sm-3 control-label"></label>
-        <div class="col-sm-10">
-          <select id="disabledSelect" class="form-control">
-            <option>Disabled select</option>
-          </select>
-        </div>
-      </div>
-    </fieldset>
-    <div class="form-group has-success has-feedback">
-      <label class="col-sm-3 control-label" for="inputSuccess">Input with success and glyphicon</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputSuccess">
-        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
-      </div>
-    </div>
-    <div class="form-group has-warning has-feedback">
-      <label class="col-sm-3 control-label" for="inputWarning">Input with warning and glyphicon</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputWarning">
-        <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-      </div>
-    </div>
-    <div class="form-group has-error has-feedback">
-      <label class="col-sm-3 control-label" for="inputError">Input with error and glyphicon</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputError">
-        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-      </div>
-    </div>
-
--->
 
 <div th:fragment="edit-student" id="edit-student">
     <div class="form-group">
@@ -145,10 +88,10 @@
         </div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label" for="univer">Университет:</label>
+            <label class="col-sm-3 control-label" for="university">Университет:</label>
 
             <div class="col-sm-6">
-                <select id="univer" class="form-control" th:field="*{university}">
+                <select id="university" class="form-control" th:field="*{university}">
                     <option th:value="СГУ">СГУ</option>
                     <option th:value="СГТУ">СГТУ</option>
                 </select>

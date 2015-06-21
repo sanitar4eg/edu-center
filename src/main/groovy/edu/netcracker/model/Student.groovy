@@ -23,6 +23,6 @@ public class Student {
     String university
     String specialty
     String course
-    @Column(name = "groupe")
+    @Column(name = "groupName")
     String group
 }
