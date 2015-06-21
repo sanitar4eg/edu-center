@@ -5,13 +5,12 @@
 <div th:replace="layout :: navbar"></div>
 
 <div class="container">
-    <div class="starter-template">
-        <p class="lead" th:text="${greeting}">(greeting)</p>
+    <ul class="nav nav-pills">
+        <li><a data-th-href="@{/student/list}">Все</a></li>
+        <li><a data-th-href="@{/student/dev}">Dev</a></li>
+        <li><a data-th-href="@{/student/qa}">QA</a></li>
+    </ul>
 
-        <p>The current time is <span th:text="${currentTime}">(time)</span></p>
-    </div>
-</div>
-<div class="container">
     <div class="table-responsive">
         <table class="table table-hover table-striped">
             <thead>
@@ -43,9 +42,7 @@
         </table>
     </div>
     <a href="#" data-th-href="@{/student/add}">
-        <button type="button" class="btn btn-default">
-            Добавить
-        </button>
+        <button type="button" class="btn btn-default">Добавить</button>
     </a>
 </div>
 

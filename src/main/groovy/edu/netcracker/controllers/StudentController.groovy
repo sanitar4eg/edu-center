@@ -15,13 +15,13 @@ import javax.validation.Valid
 @Controller
 public class StudentController {
 
-    private static final String STUDENT_LIST = "/student/list"
-    private static final String STUDENT_ADD = "/student/add"
+    private static final String STUDENT_LIST = "student/list"
+    private static final String STUDENT_ADD = "student/add"
     private static final String REDIRECT_STUDENT_LIST = "redirect:/student/list"
-    private static final String STUDENT_EDIT = "/student/edit"
-    private static final String STUDENT_DELETE = "/student/delete"
-    private static final String STUDENT_QA = "/student/qa"
-    private static final String STUDENT_DEV = "/student/dev"
+    private static final String STUDENT_EDIT = "student/edit"
+    private static final String STUDENT_DELETE = "student/delete"
+    private static final String STUDENT_QA = "student/qa"
+    private static final String STUDENT_DEV = "student/dev"
 
     @Autowired
     StudentService studentService
