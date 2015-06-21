@@ -30,70 +30,155 @@
     </div>
 </div>
 
+<!--
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Focused</label>
+      <div class="col-sm-10">
+        <input class="form-control" id="focusedInput" type="text" value="Click to focus...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="col-sm-3 control-label">Disabled</label>
+      <div class="col-sm-10">
+        <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
+      </div>
+    </div>
+    <fieldset disabled>
+      <div class="form-group">
+        <label for="disabledTextInput" class="col-sm-3 control-label">Disabled input and select list (Fieldset disabled)</label>
+        <div class="col-sm-10">
+          <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="disabledSelect" class="col-sm-3 control-label"></label>
+        <div class="col-sm-10">
+          <select id="disabledSelect" class="form-control">
+            <option>Disabled select</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+    <div class="form-group has-success has-feedback">
+      <label class="col-sm-3 control-label" for="inputSuccess">Input with success and glyphicon</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputSuccess">
+        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+      </div>
+    </div>
+    <div class="form-group has-warning has-feedback">
+      <label class="col-sm-3 control-label" for="inputWarning">Input with warning and glyphicon</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputWarning">
+        <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+      </div>
+    </div>
+    <div class="form-group has-error has-feedback">
+      <label class="col-sm-3 control-label" for="inputError">Input with error and glyphicon</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputError">
+        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+      </div>
+    </div>
+
+-->
+
 <div th:fragment="edit-student" id="edit-student">
-    <table class="table">
-        <tr>
-            <td>
-                <label for="name">Имя:</label>
-                <input id="name" class="form-control" type="text" th:field="*{firstName}"/>
-            </td>
-            <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</td>
-        </tr>
-        <tr>
-            <td>Отчество:</td>
-            <td><input class="form-control" type="text" th:field="*{middleName}"/></td>
-            <td th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">Middle Name Error</td>
-        </tr>
-        <tr>
-            <td>Фамилия:</td>
-            <td><input class="form-control" type="text" th:field="*{lastName}"/></td>
-            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</td>
-        </tr>
-        <tr>
-            <td>Вид обучения:</td>
-            <td>
-                <select class="form-control" th:field="*{type}">
+    <div class="form-group">
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="fName">Имя:</label>
+
+            <div class="col-sm-6">
+                <input id="fName" class="form-control" autofocus="autofocus" type="text" th:field="*{firstName}"/>
+            </div>
+            <div class="col-sm-4" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="mName">Отчество:</label>
+
+            <div class="col-sm-6">
+                <input id="mName" class="form-control" type="text" th:field="*{middleName}"/>
+            </div>
+            <div class="col-sm-4" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">Middle Name
+                Error
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="lName">Фамилия:</label>
+
+            <div class="col-sm-6">
+                <input id="lName" class="form-control" type="text" th:field="*{lastName}"/>
+            </div>
+            <div class="col-sm-4" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="typeOfEdu">Вид обучения:</label>
+
+            <div class="col-sm-6">
+                <select id="typeOfEdu" class="form-control" th:field="*{type}">
                     <option th:value="Dev">Dev</option>
                     <option th:value="QA">QA</option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><input class="form-control" type="email" th:field="*{email}"/></td>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
-        </tr>
-        <tr>
-            <td>Телефон:</td>
-            <td><input class="form-control" type="tel" required="required" pattern="(\+?\d[- .]*){6,13}"
-                       title="Международный, государственный или местный телефонный номер" th:field="*{phone}"/></td>
-            <td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Name Error</td>
-        </tr>
-        <tr>
-            <td>Университет:</td>
-            <td>
-                <select class="form-control" th:field="*{university}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="email">Email:</label>
+
+            <div class="col-sm-6">
+                <input id="email" class="form-control" required="required" type="text" th:field="*{email}"/>
+            </div>
+            <div class="col-sm-4" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="phone">Телефон:</label>
+
+            <div class="col-sm-6">
+                <input id="phone" class="form-control" type="tel" required="required" pattern="(\+?\d[- .]*){6,13}"
+                       title="Международный, государственный или местный телефонный номер" th:field="*{phone}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="univer">Университет:</label>
+
+            <div class="col-sm-6">
+                <select id="univer" class="form-control" th:field="*{university}">
                     <option th:value="СГУ">СГУ</option>
                     <option th:value="СГТУ">СГТУ</option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Спциальность:</td>
-            <td><input class="form-control" type="text" th:field="*{specialty}"/></td>
-            <td th:if="${#fields.hasErrors('specialty')}" th:errors="*{specialty}">Name Error</td>
-        </tr>
-        <tr>
-            <td>Курс:</td>
-            <td><input class="form-control" type="text" th:field="*{course}"/></td>
-            <td th:if="${#fields.hasErrors('course')}" th:errors="*{course}">Name Error</td>
-        </tr>
-        <tr>
-            <td>Группа:</td>
-            <td><input class="form-control" type="text" th:field="*{group}"/></td>
-            <td th:if="${#fields.hasErrors('group')}" th:errors="*{group}">Name Error</td>
-        </tr>
-    </table>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="special">Спциальность:</label>
+
+            <div class="col-sm-6">
+                <input id="special" class="form-control" type="text" th:field="*{specialty}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="course">Курс:</label>
+
+            <div class="col-sm-6">
+                <input id="course" class="form-control" type="text" th:field="*{course}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="group">Группа:</label>
+
+            <div class="col-sm-6">
+                <input id="group" class="form-control" type="text" th:field="*{group}"/>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div th:fragment="footer" id="footer">
