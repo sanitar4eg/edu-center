@@ -1,6 +1,7 @@
 package edu.netcracker.service;
 
 import edu.netcracker.model.Student;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface StudentService {
     List<Student> findQA();
 
     List<Student> findDev();
+
+    void handleImport(MultipartFile p);
 }

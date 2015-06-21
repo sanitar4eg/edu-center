@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.servlet.ModelAndView
 
 import javax.validation.Valid
@@ -24,6 +25,7 @@ public class StudentController {
     private static final String STUDENT_QA = "student/qa"
     private static final String STUDENT_DEV = "student/dev"
     private static final String STUDENT_EXPORT = "student/export"
+    private static final String STUDENT_IMPORT = "student/import"
 
     @Autowired
     StudentService studentService
@@ -88,5 +90,11 @@ public class StudentController {
     @RequestMapping(value = StudentController.STUDENT_EXPORT, method = RequestMethod.GET)
     public ModelAndView export() {
         new ModelAndView(new StudentExportExcelView(), "students", studentService.findAll())
+    }
+
+    @RequestMapping(value = StudentController.STUDENT_IMPORT, method = RequestMethod.POST)
+    public String handleImport(@RequestParam("file") MultipartFile file) {
+        studentService.handleImport(file)
+        REDIRECT_STUDENT_LIST
     }
 }

@@ -10,6 +10,12 @@
         <li><a data-th-href="@{/student/dev}">Dev</a></li>
         <li><a data-th-href="@{/student/qa}">QA</a></li>
         <li><a data-th-href="@{/student/export}">Экспорт</a></li>
+        <li>
+            <form method="POST" enctype="multipart/form-data" th:action="@{/student/import}">
+                <input type="file" name="file"/>
+                <input type="submit" value="Импорт"/>
+            </form>
+        </li>
     </ul>
 
     <div class="table-responsive">
