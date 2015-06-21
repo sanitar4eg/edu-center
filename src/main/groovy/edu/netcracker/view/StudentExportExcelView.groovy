@@ -1,5 +1,6 @@
 package edu.netcracker.view
 
+import edu.netcracker.model.Student
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
 import org.springframework.web.servlet.view.document.AbstractExcelView
 
@@ -13,6 +14,10 @@ class StudentExportExcelView extends AbstractExcelView {
                                       HSSFWorkbook workbook,
                                       HttpServletRequest request,
                                       HttpServletResponse response) throws Exception {
+        response.setHeader("Content-Type", "application/octet-stream")
+        response.setHeader("Content-Disposition", "attachment; filename=Students.xls")
+        List<Student> students = model.get("students")
+
 
     }
 }
