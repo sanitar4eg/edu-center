@@ -17,35 +17,36 @@ import javax.validation.Valid
 @Controller
 public class StudentController {
 
-    private static final String STUDENT_LIST = "student/list"
+    private static final String STUDENTS_LIST = "student/list"
     private static final String STUDENT_ADD = "student/add"
-    private static final String REDIRECT_STUDENT_LIST = "redirect:/student/list"
+    private static final String REDIRECT_STUDENTS_LIST = "redirect:/student/list"
     private static final String STUDENT_EDIT = "student/edit"
     private static final String STUDENT_DELETE = "student/delete"
-    private static final String STUDENT_QA = "student/qa"
-    private static final String STUDENT_DEV = "student/dev"
-    private static final String STUDENT_EXPORT = "student/export"
-    private static final String STUDENT_IMPORT = "student/import"
+    private static final String STUDENTS_QA = "student/qa"
+    private static final String STUDENTS_DEV = "student/dev"
+    private static final String STUDENTS_EXPORT = "student/export"
+    private static final String STUDENTS_IMPORT = "student/import"
+    private static final String STUDENTS_HISTORY = "student/history"
 
     @Autowired
     StudentService studentService
 
-    @RequestMapping(value = StudentController.STUDENT_LIST, method = RequestMethod.GET)
-    public String getAll(Locale locale, Model model) {
+    @RequestMapping(value = StudentController.STUDENTS_LIST, method = RequestMethod.GET)
+    public String getAll(Model model) {
         model.addAttribute("students", studentService.findAll())
-        STUDENT_LIST
+        STUDENTS_LIST
     }
 
-    @RequestMapping(value = StudentController.STUDENT_QA, method = RequestMethod.GET)
+    @RequestMapping(value = StudentController.STUDENTS_QA, method = RequestMethod.GET)
     public String getQA(Model model) {
         model.addAttribute("students", studentService.findQA())
-        STUDENT_LIST
+        STUDENTS_LIST
     }
 
-    @RequestMapping(value = StudentController.STUDENT_DEV, method = RequestMethod.GET)
+    @RequestMapping(value = StudentController.STUDENTS_DEV, method = RequestMethod.GET)
     public String getDev(Model model) {
         model.addAttribute("students", studentService.findDev())
-        STUDENT_LIST
+        STUDENTS_LIST
     }
 
     @RequestMapping(value = StudentController.STUDENT_ADD, method = RequestMethod.GET)
@@ -59,7 +60,7 @@ public class StudentController {
     public String addSubmit(@Valid Student student, BindingResult result) {
         String target = STUDENT_ADD
         if (!result.hasErrors()) {
-            target = REDIRECT_STUDENT_LIST
+            target = REDIRECT_STUDENTS_LIST
             studentService.saveAndFlush(student)
         }
         target
@@ -75,7 +76,7 @@ public class StudentController {
     public String editSubmit(@Valid Student student, BindingResult result) {
         String target = STUDENT_EDIT
         if (!result.hasErrors()) {
-            target = REDIRECT_STUDENT_LIST
+            target = REDIRECT_STUDENTS_LIST
             studentService.saveAndFlush(student)
         }
         target
@@ -84,17 +85,23 @@ public class StudentController {
     @RequestMapping(value = StudentController.STUDENT_DELETE, method = RequestMethod.GET)
     public String delete(@RequestParam(value = "id", required = true) Long id) {
         studentService.delete(id)
-        REDIRECT_STUDENT_LIST
+        REDIRECT_STUDENTS_LIST
     }
 
-    @RequestMapping(value = StudentController.STUDENT_EXPORT, method = RequestMethod.GET)
+    @RequestMapping(value = StudentController.STUDENTS_EXPORT, method = RequestMethod.GET)
     public ModelAndView export() {
         new ModelAndView(new StudentExportExcelView(), "students", studentService.findAll())
     }
 
-    @RequestMapping(value = StudentController.STUDENT_IMPORT, method = RequestMethod.POST)
+    @RequestMapping(value = StudentController.STUDENTS_IMPORT, method = RequestMethod.POST)
     public String handleImport(@RequestParam("file") MultipartFile file) {
         studentService.handleImport(file)
-        REDIRECT_STUDENT_LIST
+        REDIRECT_STUDENTS_LIST
+    }
+
+    @RequestMapping(value = StudentController.STUDENTS_HISTORY, method = RequestMethod.GET)
+    public String showHistory(Model model) {
+        model.addAttribute("students", studentService.getStudentsHistoryAfterDate(new Date()))
+        return STUDENTS_HISTORY
     }
 }

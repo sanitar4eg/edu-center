@@ -1,4 +1,5 @@
 package edu.netcracker.service.impl
+
 import edu.netcracker.model.Student
 import edu.netcracker.repository.StudentJpaRepository
 import edu.netcracker.service.StudentService
@@ -6,15 +7,35 @@ import edu.netcracker.view.StudentExportExcelView
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
 import org.apache.poi.ss.usermodel.Row
 import org.apache.poi.ss.usermodel.Workbook
+import org.hibernate.envers.AuditReader
+import org.hibernate.envers.AuditReaderFactory
+import org.hibernate.envers.RevisionType
+import org.hibernate.envers.query.AuditEntity
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
+
+import javax.persistence.EntityManager
 
 @Service
 class StudentServiceImpl implements StudentService {
 
     @Autowired
+    EntityManager entityManager;
+
+    @Autowired
     StudentJpaRepository repository;
+
+    public List<Student> getStudentsHistoryAfterDate(Date date) {
+        AuditReader auditReader = AuditReaderFactory.get(entityManager);
+        List list = auditReader.createQuery()
+                .forRevisionsOfEntity(Student.class, true, true)
+                .add(AuditEntity.revisionNumber().le(auditReader.getRevisionNumberForDate(date)))
+                .add(AuditEntity.revisionNumber().maximize().computeAggregationInInstanceContext())
+                .add(AuditEntity.revisionType().ne(RevisionType.DEL))
+                .getResultList();
+        return null;
+    }
 
     @Override
     public List<Student> findAll() {
