@@ -10,6 +10,7 @@ import org.apache.poi.ss.usermodel.Workbook
 import org.hibernate.envers.AuditReader
 import org.hibernate.envers.AuditReaderFactory
 import org.hibernate.envers.RevisionType
+import org.hibernate.envers.exception.RevisionDoesNotExistException
 import org.hibernate.envers.query.AuditEntity
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -28,13 +29,18 @@ class StudentServiceImpl implements StudentService {
 
     public List<Student> getStudentsHistoryAfterDate(Date date) {
         AuditReader auditReader = AuditReaderFactory.get(entityManager);
-        List list = auditReader.createQuery()
-                .forRevisionsOfEntity(Student.class, true, true)
-                .add(AuditEntity.revisionNumber().le(auditReader.getRevisionNumberForDate(date)))
-                .add(AuditEntity.revisionNumber().maximize().computeAggregationInInstanceContext())
-                .add(AuditEntity.revisionType().ne(RevisionType.DEL))
-                .getResultList();
-        return null;
+        List list;
+        try {
+            list = auditReader.createQuery()
+                    .forRevisionsOfEntity(Student.class, true, true)
+                    .add(AuditEntity.revisionNumber().le(auditReader.getRevisionNumberForDate(date)))
+                    .add(AuditEntity.revisionNumber().maximize().computeAggregationInInstanceContext())
+                    .add(AuditEntity.revisionType().ne(RevisionType.DEL))
+                    .getResultList();
+        } catch (RevisionDoesNotExistException exception) {
+            list = Collections.EMPTY_LIST
+        }
+        return list;
     }
 
     @Override

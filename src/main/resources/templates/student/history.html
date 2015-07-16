@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='Список студентов'">
+    <link href="/webjars/bootstrap/3.0.3/css/bootstrap.min.css"
+          rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" media="screen"
+          href="/webjars/bootstrap-datetimepicker/2.3.1/css/bootstrap-datetimepicker.min.css"/>
+</head>
+
+<body>
+<div th:replace="layout :: navbar"></div>
+
+<div class="container">
+    <div class="table">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Группа</th>
+                <th>Почта</th>
+                <th>Телефон</th>
+                <th>ВУЗ</th>
+                <th>Специальность</th>
+                <th>Курс</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="student : ${students}">
+                <td data-th-text="|${student.firstName} ${student.middleName} ${student.lastName}|"></td>
+                <td data-th-text="${student.type}"></td>
+                <td data-th-text="${student.email}"></td>
+                <td data-th-text="${student.phone}"></td>
+                <td data-th-text="${student.university}"></td>
+                <td data-th-text="${student.specialty}"></td>
+                <td data-th-text="${student.course}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div th:include="layout :: footer" id="footer">(footer)</div>
+
+</body>
+</html>
