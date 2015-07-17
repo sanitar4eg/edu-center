@@ -2,6 +2,8 @@ package edu.netcracker.controllers
 import edu.netcracker.model.Student
 import edu.netcracker.service.StudentService
 import edu.netcracker.view.StudentExportExcelView
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -18,6 +20,8 @@ import java.text.SimpleDateFormat
 
 @Controller
 public class StudentController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(StudentController.class)
 
     private static final String STUDENTS_LIST = "student/list"
     private static final String STUDENT_ADD = "student/add"

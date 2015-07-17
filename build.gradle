@@ -36,12 +36,18 @@ repositories {
     }
 }
 
+configurations {
+    compile.exclude module: 'spring-boot-starter-logging'
+    testCompile.exclude module: 'spring-boot-starter-logging'
+}
+
 dependencies {
     compile(
             /*Spring*/
             "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}",
             "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
             "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-log4j:${springBootVersion}",
             "org.springframework.boot:spring-boot-devtools",
             /*Groovy*/
             "org.codehaus.groovy:groovy-all:2.4.3",
