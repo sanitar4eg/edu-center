@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.servlet.ModelAndView
 
 import javax.validation.Valid
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 
 @Controller
 public class StudentController {
@@ -27,6 +29,8 @@ public class StudentController {
     private static final String STUDENTS_EXPORT = "student/export"
     private static final String STUDENTS_IMPORT = "student/import"
     private static final String STUDENTS_HISTORY = "student/history"
+
+    private static final DateFormat DATE_PICKER_FORMAT = new SimpleDateFormat("dd.MM.yyyy HH:mm")
 
     @Autowired
     StudentService studentService
@@ -101,7 +105,23 @@ public class StudentController {
 
     @RequestMapping(value = StudentController.STUDENTS_HISTORY, method = RequestMethod.GET)
     public String showHistory(Model model) {
-        model.addAttribute("students", studentService.getStudentsHistoryAfterDate(new Date()))
+        Date now = new Date()
+        model.addAttribute("students", studentService.getStudentsHistoryAfterDate(now))
+        model.addAttribute("datePicker", DATE_PICKER_FORMAT.format(now))
+        return STUDENTS_HISTORY
+    }
+
+    @RequestMapping(value = StudentController.STUDENTS_HISTORY, method = RequestMethod.POST)
+    public String postHistory(@RequestParam(value = "datePicker", required = true) String datePicker, Model model) {
+        Date date
+        if (datePicker?.empty) {
+            date = new Date()
+            datePicker = DATE_PICKER_FORMAT.format(date)
+        } else {
+            date = DATE_PICKER_FORMAT.parse(datePicker)
+        }
+        model.addAttribute("students", studentService.getStudentsHistoryAfterDate(date))
+        model.addAttribute("datePicker", datePicker)
         return STUDENTS_HISTORY
     }
 }
